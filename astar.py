@@ -9,7 +9,7 @@ pygame.display.set_caption("A* Path Finding Algorithm") # add a title to the dis
 
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)
-BLUE = (0, 255, 0)
+BLUE = (102, 178, 255)
 YELLOW = (255, 255, 0)
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
@@ -35,7 +35,7 @@ class Cube:
         return self.row,self.col 
     
     def is_closed(self):
-        return self.color == RED
+        return self.color == BLUE
 
     def is_open(self):
         return self.color == GREEN
@@ -55,8 +55,8 @@ class Cube:
     def make_start(self):
         self.color = ORANGE
     
-    def make_closed(self):
-        self.color = RED
+    def make_closed(self): 
+        self.color = BLUE
 
     def make_open(self):
         self.color = GREEN
@@ -238,6 +238,22 @@ def main(win,width):
                             spot.update_neighbors(grid)
 
                     algorithm (lambda: draw(win,grid,ROWS,width),grid, start,end)
+
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    for row in grid:
+                        for spot in row:
+                            spot.reset()
+                            if spot == start:
+                               start = None
+                            elif spot == end:
+                                end = None
+
+            
+                            
+
+
+                        
 
         
                 
